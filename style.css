@@ -1,13 +1,11 @@
-*{
+*,::after,::before{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Lato';
-  color: white;
-  /* border: 1px solid white; */
-  
+  font-family: 'lato',sans-serif;
 }
 
+/* VARIABLE */
 :root{
   --color01 : #212932;
   --color02 : #19202c;
@@ -18,6 +16,8 @@
   --color07 : #FFD84D;
   
 }
+
+/* COULEUR */
 
 .fc-wh{
   color:white;
@@ -31,9 +31,21 @@
   color: var(--color03);
 }
 
+.bg-color-01{
+  background-color: var(--color01)
+}
+
+.bg-color-02{
+  background-color: var(--color02);
+}
+
+.bg-color-06{
+  background-color: var(--color03);
+}
+
+/* GENERAL */
 
 .container-fluid{
-  background-color: var(--color01);
   height: 100vh;
 }
 
@@ -44,14 +56,12 @@
   align-items: center;
 }
 
-.bg-sombre{
-  background-color: var(--color02);
-}
+/* BOUTONS */
 
 .button{
   background-color: transparent;
-  border: none;
-  
+  border: none; 
+  transition: all 50ms;  
 }
 
 .button i{
@@ -60,6 +70,7 @@
 
 .button:hover{
   color: var(--color07);
+  transform: scale(1.1);
 }
 
 .current{
@@ -68,8 +79,54 @@
   max-height: 150px;
 }
 
+.noclick{
+  pointer-events: none;
+  color: var(--color04);
+}
+
+/* animation du point actif du player en cours */
+.active{
+  background-color: var(--color03);
+  width: 25px;
+  height: 25px;
+  animation: scaleChange 300ms;
+}
+
+@keyframes scaleChange {
+  0%{
+    transform: scale(0%);
+  }
+  100%{
+    transform: scale(100%);
+  }
+}
+
+/* animation du dés */
+
 .dice{
   font-size: 6em;
 }
 
 
+
+.addNumber{
+  color: var(--color06);
+  animation: plusPlus 1000ms forwards;
+    
+}
+
+
+@keyframes plusPlus {
+  0%{
+    font-size: 0;
+    opacity: 0;
+  }
+  50%{
+    font-size: 40px;
+    opacity: 1;
+  }
+  100%{
+    font-size: 0;
+    opacity: 0;
+    
+}
