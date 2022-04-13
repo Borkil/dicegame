@@ -13,6 +13,7 @@ const newGameButton = document.querySelector('#newGameButton')
 const currentCountPlayer = document.querySelectorAll('.current p') //index 0 = player01 et index 1 = player02
 const playersCount = document.querySelectorAll('.playerCount')
 const selectPlayer = document.querySelectorAll('.selectPlayer')
+const audioThrowDice = document.querySelector('audio')
 
 
 function showModal (player) {
@@ -118,6 +119,8 @@ rollButton.addEventListener('click', (e) =>{
 
   dice.classList.remove(dice.classList[classIndex])
   dice.classList.add(newClass)
+
+  audioThrowDice.play()
 
   if(stateGame.turnCount % 2 != 0){
 
