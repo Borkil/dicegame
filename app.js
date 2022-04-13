@@ -4,16 +4,19 @@ const stateGame = {
   player02Count : 0,
   countCurrentPlayer02 : 0,
   turnCount : 0,
-  objectifGame: 50
+  objectifGame: 50,
+  muteSong: true
 }
 
 const holdButton = document.querySelector('#holdButton')
 const rollButton = document.querySelector('#rollButton');
 const newGameButton = document.querySelector('#newGameButton')
+const songButton = document.querySelector('#songButton i')
 const currentCountPlayer = document.querySelectorAll('.current p') //index 0 = player01 et index 1 = player02
 const playersCount = document.querySelectorAll('.playerCount')
 const selectPlayer = document.querySelectorAll('.selectPlayer')
-const audioThrowDice = document.querySelector('audio')
+const songs = document.querySelectorAll('audio')
+
 
 
 function showModal (player) {
@@ -40,12 +43,12 @@ function showModal (player) {
   },3000)
 }
 
-
 function checkWinner (count, objectif, player) {
 
   if(count >= objectif){
 
-    showModal(player)    
+    showModal(player)
+    playSong(songs[1], stateGame.muteSong)    
     addNoClickClass(holdButton)
     addNoClickClass(rollButton)
     removeNoClickClass(newGameButton)
@@ -70,6 +73,12 @@ function removeNoClickClass (element) {
   element.classList.remove('noclick')
 }
 
+function playSong (song, boolean) {
+  if(boolean){
+    song.play()
+  }
+}
+
 
 function addAnimationStack (index, number) {
   const containerCount = document.querySelectorAll('.containerCount')
@@ -81,6 +90,7 @@ function addAnimationStack (index, number) {
     containerCount[index].removeChild(span)
   },1500)
 }
+
 
 
 
@@ -120,13 +130,13 @@ rollButton.addEventListener('click', (e) =>{
   dice.classList.remove(dice.classList[classIndex])
   dice.classList.add(newClass)
 
-  audioThrowDice.play()
+  playSong(songs[0], stateGame.muteSong )
 
   if(stateGame.turnCount % 2 != 0){
 
     if(randomNumber != 1){
       stateGame.countCurrentPlayer02 += randomNumber
-      currentCountPlayer[1].innerHTML = stateGame.countCurrentPlayer02
+      currentCountPlayer[1].innerHTML = stateGame.countCurrentPlayer02    
       
     }else{
       stateGame.countCurrentPlayer02 = 0        
@@ -134,6 +144,7 @@ rollButton.addEventListener('click', (e) =>{
       currentCountPlayer[1].innerHTML = stateGame.countCurrentPlayer02
       removeActiveClass(selectPlayer)
       addActiveClass(selectPlayer,0)
+      playSong(songs[2], stateGame.muteSong)
     }
 
   }else{
@@ -141,13 +152,14 @@ rollButton.addEventListener('click', (e) =>{
     if(randomNumber != 1){
       stateGame.countCurrentPlayer01 += randomNumber
       currentCountPlayer[0].innerHTML = stateGame.countCurrentPlayer01
-      
+            
     }else{
       stateGame.countCurrentPlayer01 = 0        
       stateGame.turnCount += 1
       currentCountPlayer[0].innerHTML = stateGame.countCurrentPlayer01
       removeActiveClass(selectPlayer)
       addActiveClass(selectPlayer,1)
+      playSong(songs[2], stateGame.muteSong)
     }
 
   }
@@ -169,6 +181,7 @@ holdButton.addEventListener('click', (e) =>{
       checkWinner(stateGame.player02Count, stateGame.objectifGame, "player02")
       removeActiveClass(selectPlayer)
       addActiveClass(selectPlayer,0)
+      playSong(songs[3], stateGame.muteSong)
       
 
     }else{ // si pair alors joueur01
@@ -183,13 +196,25 @@ holdButton.addEventListener('click', (e) =>{
       checkWinner(stateGame.player01Count, stateGame.objectifGame, "player01")
       removeActiveClass(selectPlayer)
       addActiveClass(selectPlayer,1)
+      playSong(songs[3], stateGame.muteSong)
       
 
     }
 
 })
 
-
+songButton.addEventListener('click', () => {
+  if(stateGame.muteSong){
+    stateGame.muteSong = false
+    songButton.classList.remove('bi-volume-up')
+    songButton.classList.add('bi-volume-mute')
+    
+  }else {
+    stateGame.muteSong = true
+    songButton.classList.remove('bi-volume-mute')
+    songButton.classList.add('bi-volume-up')
+  }
+})
 
 
 

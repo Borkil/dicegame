@@ -16,11 +16,23 @@
   <body>
     <div class="container-fluid d-flex flex-column bg-color-01 fc-wh">
       
-      <div class="bg-color-02 rounded flex-container p-3 mb-2 w-100">
-        <button type="button" class="button fs-2 fc-03" id="newGameButton">
-          <i class="bi bi-plus-circle me-2 fc-03"></i>
-          NEW GAME
-        </button>
+      <div class="bg-color-02 rounded d-flex justify-content-center p-3 mb-2 w-100">
+        <div class="flex-grow-1 d-flex justify-content-center">
+          <button type="button" class="button fs-2 fc-03" id="newGameButton">
+            <i class="bi bi-plus-circle me-2 fc-03"></i>
+            NEW GAME
+          </button>
+        </div>
+
+        <div>
+          <button type="button" class="button fs-2 fc-03 align-" id="songButton">
+            <i class="bi bi-volume-up"></i>
+          </button>
+        </div>
+        
+
+        
+
       </div>
 
       <div class="flex-grow-1 d-flex flex-column flex-sm-row">
@@ -90,8 +102,20 @@
 
     </div>
 
-    <audio  controls>
+    <audio>
       <source src="/audio/throwdice.mp3"/>
+    </audio>
+
+    <audio>
+      <source src="/audio/victoire.mp3"/>
+    </audio>
+
+    <audio>
+      <source src="/audio/boing.mp3"/>
+    </audio>
+
+    <audio">
+      <source src="/audio/woosh.wav"/>
     </audio>
 
  
