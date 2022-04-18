@@ -4,7 +4,7 @@ const stateGame = {
   player02Count : 0,
   countCurrentPlayer02 : 0,
   turnCount : 0,
-  objectifGame: 50,
+  objectifGame: 100,
   muteSong: true
 }
 
