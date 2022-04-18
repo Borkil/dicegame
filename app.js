@@ -84,6 +84,8 @@ function addAnimationStack (index, number) {
   const containerCount = document.querySelectorAll('.containerCount')
   const span = document.createElement('span')
   span.innerHTML = `+${number}`
+  span.classList.add('float')
+  span.classList.add('fs-1')
   span.classList.add('addNumber')
   containerCount[index].appendChild(span)
   setTimeout(() => {
